@@ -1,0 +1,40 @@
+{
+    "elements": [
+        { "posX": 710, "posY": 96, "elmtID": "elmtMSYwoL", "elmtName": "MSY without landing", "elmtDesc": "The purpose of this scenario is to establish a baseline for comparing the alternative management approaches that represented by the other listed scenarios: What might happen if management was to proceed as before the 2014 CFP reform?", "elmtType": 2, "elmtData": [ 1 ], "elmtWghtMthd": 0 },
+        { "posX": 710, "posY": 160, "elmtID": "elmtMSYwL", "elmtName": "MSY with landing", "elmtDesc": "The purpose of this scenario is to establish a baseline for comparing the alternative management approaches that represented by the other listed scenarios: What would happen if management was to proceed according to CFP as revised CFP in 2014?", "elmtType": 2, "elmtData": [ 2 ], "elmtWghtMthd": 0 },
+        { "posX": 710, "posY": 224, "elmtID": "elmtMMEY", "elmtName": "MMEY", "elmtDesc": "By changing the balance between the main commercial species and fisheries involved (including the balance between whitefish and Norwegian lobster), this scenario proposes an approach to achieve the maximum economically yield.", "elmtType": 2, "elmtData": [ 3 ], "elmtWghtMthd": 0 },
+        { "posX": 710, "posY": 288, "elmtID": "elmtMSYrS", "elmtName": "MSY & reducing seals", "elmtDesc": "The purpose of this scenario is to assess the potential impact of increased seals populations in combination with the requirements of the coming landing obligation and of achieving MSY for commercial stocks.", "elmtType": 2, "elmtData": [ 4 ], "elmtWghtMthd": 0 },
+        { "posX": 710, "posY": 352, "elmtID": "elmtMMEYrS", "elmtName": "MMEY & reducing seals", "elmtDesc": "The purpose of this scenario is suggest an approach to achieve maximum economically yield by changing the balance between the main commercial species and fisheries involved (including the balance between whitefish and Norwegian lobster) in combination with improved selectivity measures to address the landing obligation and a reduction of the seal populations to the levels estimated to be present in the 1980s.", "elmtType": 2, "elmtData": [ 5 ], "elmtWghtMthd": 0 },
+        { "posX": 710, "posY": 416, "elmtID": "elmtMSYwOil", "elmtName": "MSY w. Oil", "elmtDesc": "The purpose of this scenario is to establish a baseline for comparing the alternative management approaches that represented by the other listed scenarios: What might happen if management was to proceed as before the 2014 CFP reform?", "elmtType": 2, "elmtData": [ 6 ], "elmtWghtMthd": 0 },
+        { "posX": 500, "posY": 96, "elmtID": "elmtAttr1", "elmtName": "Attribute 1", "elmtDesc": "write description here", "elmtType": 0, "elmtData": [ 1 ], "elmtWghtMthd": 0 },
+        { "posX": 500, "posY": 160, "elmtID": "elmtAttr2", "elmtName": "Attribute 2", "elmtDesc": "write description here", "elmtType": 0, "elmtData": [ 2 ], "elmtWghtMthd": 0 },
+        { "posX": 500, "posY": 224, "elmtID": "elmtAttr3", "elmtName": "Attribute 3", "elmtDesc": "write description here", "elmtType": 0, "elmtData": [ 3 ], "elmtWghtMthd": 0 },
+        { "posX": 500, "posY": 288, "elmtID": "elmtAttr4", "elmtName": "Attribute 4", "elmtDesc": "write description here", "elmtType": 0, "elmtData": [ 4 ], "elmtWghtMthd": 0 },
+        { "posX": 500, "posY": 352, "elmtID": "elmtAttr5", "elmtName": "Attribute 5", "elmtDesc": "write description here", "elmtType": 0, "elmtData": [ 5 ], "elmtWghtMthd": 0 },
+        { "posX": 290, "posY": 128, "elmtID": "elmtEco", "elmtName": "Economical", "elmtDesc": "write description here", "elmtType": 1, "elmtData": [ [ "conn4", "conn5" ], [ 80, 10 ] ], "elmtWghtMthd": 1 },
+        { "posX": 290, "posY": 224, "elmtID": "elmtSoc", "elmtName": "Social", "elmtDesc": "write description here", "elmtType": 1, "elmtData": [ [ "conn6" ], [ 100 ] ], "elmtWghtMthd": 1 },
+        { "posX": 290, "posY": 320, "elmtID": "elmtEnv", "elmtName": "Environmental", "elmtDesc": "write description here", "elmtType": 1, "elmtData": [ [ "conn7", "conn8" ], [ 90, 10 ] ], "elmtWghtMthd": 1 },
+        { "posX": 80, "posY": 224, "elmtID": "elmtGoal", "elmtName": "Sustainable Fisheries", "elmtDesc": "write description here", "elmtType": 3, "elmtData": [ [ "conn1", "conn2", "conn3" ], [ 90, 80, 60 ] ], "elmtWghtMthd": 1 }
+    ],
+    "connections": [
+        { "connInput": "elmtEco", "connOutput": "elmtGoal", "connID": "conn1" },
+        { "connInput": "elmtSoc", "connOutput": "elmtGoal", "connID": "conn2" },
+        { "connInput": "elmtEnv", "connOutput": "elmtGoal", "connID": "conn3" },
+        { "connInput": "elmtAttr1", "connOutput": "elmtEco", "connID": "conn4" },
+        { "connInput": "elmtAttr2", "connOutput": "elmtEco", "connID": "conn5" },
+        { "connInput": "elmtAttr3", "connOutput": "elmtSoc", "connID": "conn6" },
+        { "connInput": "elmtAttr4", "connOutput": "elmtEnv", "connID": "conn7" },
+        { "connInput": "elmtAttr5", "connOutput": "elmtEnv", "connID": "conn8" }
+    ],
+    "mdlName": "The Strait of Sicily",
+    "mainObj": "elmtGoal",
+    "dataMat": [
+        [ "leaveblank", "Attribute 1", "Attribute 2", "Attribute 3", "Attribute 4", "Attribute 5" ],
+        [ "elmtMSYwoL", 340, 2400, 443, 255, 6680 ],
+        [ "elmtMSYwL", 254, 2851, 121, 496, 8800 ],
+        [ "elmtMMEY", 682, 3541, 351, 123, 6870 ],
+        [ "elmtMSYrS", 216 , 3665 ,333 , 213, 9862 ],
+        [ "elmtMMEYrS", 354, 2100, 366, 232, 10000 ],
+        [ "elmtMSYwOil", 351, 2365, 345, 265, 15200 ]
+    ]
+}

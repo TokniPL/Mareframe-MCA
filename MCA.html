@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="us">
+<head>
+    <meta charset="utf-8">
+    <title>MCA Tool</title>
+    
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/lib/bootstrap.min.css" rel="stylesheet">
+	<link href="css/body.css" rel="stylesheet">
+	<link href="css/footer.css" rel="stylesheet">
+        
+    <link href="jQueryUI/jquery-ui.css" rel="stylesheet">
+</head>
+<body>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.createjs.com/createjs-2014.12.12.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+        google.load("visualization", "1.0", { "packages": ["corechart","table"] });
+    </script>
+    <script src="js/Mareframe.js"></script>
+    <script src="js/MareframeGUI.js"></script>
+
+    <div class="container">
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="page-header">
+					<h1 id="model_header"><a href="http://www.mareframe-fp7.org/"><img src="img/logo_mareframe.png"></a></h1>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<a href="index.html"><img src="img/europe.jpg" class="img-thumbnail europe-map-back"></a>
+						<p id="model_description">This is the Mareframe MCA tool. Data has been loaded into the table on the right. You may doubleclick on each element below, to access the properties panel for that element. If you doubleclick on one of the red or green elements, you may adjust the weights of it's child elements, and thus the data it points to. In the chart at the bottom, you will see the result of the analysis, with the tallest column being the highest scoring one.</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4 page-header europe-map-zoom">
+				<img src="img/locations/west-coast-of-scotland.jpg" class="center-block img-responsive img-rounded">
+			 </div>
+		</div>
+    </div>
+    <div class="ui-widget ui-dialog ui-corner-all ui-widget-content header-bar" style="position: static">
+        <div class="ui-widget-header ui-corner-all ui-dialog-titlebar" id="modelHeader">Model</div>
+
+
+        <div style="padding: 1em 1em 0.5em 1.4em; font-size: 0.7em">
+            <button class="advButton" id="newDcmt" onclick="h.addNewModel()">New Document</button>
+            <button class="advButton" id="lodDcmt" onclick="h.fileHandler.QuickLoad();">Open Document</button>
+            <button class="advButton" id="savDcmt" onclick="h.fileHandler.QuickSave();">Save Document</button>
+            <button class="advbutton" id="newElmt" onclick="h.gui.addElementToStage();">New Element</button>
+            <button class="advbutton" id="delete">Delete Element</button>
+            <input class="advbutton" type="checkbox" id="cnctTool"><label for="cnctTool">Connect Tool</label>
+        </div>
+    </div>
+    <div id="MCAContainer" style="text-align:center">
+    
+        <!--MCA Tool canvas-->
+        <canvas id="MCATool" width="800" height="480" style="display:inline-block"></canvas>
+    
+
+        <!--Data Table-->
+        <div id="table" class="table-editable" style="display:inline-block ; vertical-align:top">
+            <table id="editableDataTable" class="table" style="border: 2px solid #ffffff;border-collapse:collapse;">
+                <tr id="table_header">
+                    <th style="border: 1px solid black">UnDef</th>
+                    <th style="border: 1px solid black">UnDef</th>
+                </tr>
+                <tr>
+                    <td contenteditable="true">undefined</td>
+                    <td contenteditable="true">undefined</td>
+                </tr>
+                <tr>
+                    <td contenteditable="true">undefined</td>
+                    <td contenteditable="true">undefined</td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="finalScore_div" style="display:inline-block"></div>
+    </div>
+
+
+    <!--Popup Dialog-->
+    <div id="detailsDialog">
+        <div id="weightingMethodSelector"></div>
+        <div id="valueFn_div">
+            <canvas id="valueFn_canvas" width="100" height="100"></canvas>
+            <button class="button" id="valueFn_Linear" onClick="">Linearize</button>
+            <button class="button" id="valueFn_Flip" onclick="">Flip Direction</button>
+        </div>
+        <div id="sliders_div"></div>
+        <div id="datatable_div"></div>
+        <div id="description_div"></div>
+        <div id="chart_div"></div>
+    </div>
+    <script src="jQueryUI\jquery-ui.js"></script>
+    <script>
+        $("input[type=checkbox]").button();
+        $("#newDcmt").button({ icons: { primary: "ui-icon-document" } });
+        $("#lodDcmt").button({ icons: { primary: "ui-icon-folder-open" } });
+        $("#savDcmt").button({ icons: { primary: "ui-icon-disk" } });
+        $("#newElmt").button({ icons: { primary: "ui-icon-plus" } });
+        $("#delete").button({ icons: { primary: "ui-icon-trash" } });
+        $("#cnctTool").button({ icons: { primary: "ui-icon-link" } });
+        $(".header-bar").hide();
+        $("#detailsDialog").dialog({
+            autoOpen: false,
+            resizable: true,
+            height: 600,
+            width: 800,
+            show: {
+                effect: "blind",
+                duration: 600
+            },
+            hide: {
+                effect: "blind",
+                duration: 1600
+            },
+            buttons: {
+                Close: function () {
+                    $(this).dialog("close");
+                    $("#weightingMethodSelector").hide();
+                    $("#valueFN_div").hide();
+                    $("#sliders_div").hide();
+                    $("#datatable_div").hide();
+                    $("#description_div").hide();
+                    $("#chart_div").hide();
+                },
+            }
+        
+        });
+        $("#weightingMethodSelector").hide();
+        $("#valueFN_div").hide();
+        $("#sliders_div").hide();
+        $("#datatable_div").hide();
+        $("#description_div").hide();
+        $("#chart_div").hide();
+
+    
+    </script>
+
+
+<footer class="footer">
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-2 col-sm-2 col-md-2">
+				<img src="img/logo_eu.png" class="center-block img-responsive">
+			</div>
+			<div class="col-xs-10 col-sm-10 col-md-6">
+				<p class="text-muted">This project has receive funding from the European Union's Seventh Framework Programme for research, technological development and demonstration under grant agreement no. 613571.</p>
+			</div>
+		</div>
+	</div>
+</footer>
+
+</body>
+</html>
